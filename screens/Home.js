@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TextInput, Pressable } from 'react-native';
 import * as Localization from 'expo-localization'
 
 import { globalStyles } from '../styles/global';
@@ -22,14 +22,31 @@ export default function Home(){
     React.useEffect(() => {
         if(!timeZone) return;
 
-        setInterval(async () => {
+        const interval = setInterval(async () => {
             const date = await fetchDate(timeZone);
             setDate(date);
         }, 1000);
+
+        return () => clearInterval(interval);        
     }, [timeZone])
+
+    const [inputTimeZone, setInputTimeZone] = React.useState('');
+
+    const HandleSubmit = async () => {
+        setTimeZone(inputTimeZone);
+    }
 
     return(
         <View style={globalStyles.container}>
+            <TextInput 
+                style={globalStyles.input} 
+                value={inputTimeZone}
+                onChangeText={setInputTimeZone}
+            />
+            <Pressable style={globalStyles.button} onPress={HandleSubmit}>
+                <Text style={globalStyles.buttonText}>Submit</Text>
+            </Pressable>
+
             <Text style={globalStyles.titleText}>{timeZone}</Text>
             <Text style={globalStyles.LargeText}>{moment.getTime(date?.datetime)}</Text>
             <Text style={globalStyles.titleText}>{moment.getDate(date?.datetime)}</Text>

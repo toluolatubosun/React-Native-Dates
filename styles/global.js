@@ -16,9 +16,7 @@ export const globalStyles = StyleSheet.create({
     },
     container: {
         flex: 1,
-        justifyContent: 'center',
         padding: 20,
-        marginTop: -100,
         backgroundColor: '#fff'
     },
     input: {
@@ -33,10 +31,11 @@ export const globalStyles = StyleSheet.create({
         backgroundColor: '#333',
         padding: 14,
         borderRadius: 6,
+        marginBottom: 100,
     },
     buttonText: {
         color: '#fff',
-        fontSize: 18,
+        fontSize: 16,
         fontWeight: 'bold',
         fontFamily: 'poppins-regular',
         textTransform: 'uppercase',
