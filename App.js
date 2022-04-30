@@ -1,6 +1,7 @@
 import Home from './screens/Home'
 import { useFonts } from "expo-font"
 import AppLoading from 'expo-app-loading';
+import Toast from 'react-native-toast-message';
 
 export default function App() {
 	let [fontsLoaded] = useFonts({
@@ -13,6 +14,9 @@ export default function App() {
 	}
 
 	return (
+		<>
 		<Home />
+		<Toast />
+		</>
 	);
 }

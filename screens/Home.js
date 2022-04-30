@@ -1,12 +1,19 @@
 import React from 'react';
 import { View, Text, TextInput, Pressable } from 'react-native';
 import * as Localization from 'expo-localization'
+import Toast from 'react-native-toast-message';
 
 import { globalStyles } from '../styles/global';
 import moment from '../utils/moment';
 
 const fetchDate = async (timeZone) => {
     const response = await fetch(`http://worldtimeapi.org/api/timezone/${timeZone}`);
+    const data = await response.json();
+    return data;
+}
+
+const fetchTimeZones = async () => {
+    const response = await fetch(`http://worldtimeapi.org/api/timezone`);
     const data = await response.json();
     return data;
 }
@@ -33,6 +40,29 @@ export default function Home(){
     const [inputTimeZone, setInputTimeZone] = React.useState('');
 
     const HandleSubmit = async () => {
+        Toast.show({
+            type: 'info',
+            text1: 'Loading',
+            text2: 'Please wait',
+            autoHide: false
+        });
+
+        const apiTimeZones = await fetchTimeZones();
+        const isValid = apiTimeZones.find(timeZone => timeZone === inputTimeZone);
+
+        
+        if(!isValid){
+            Toast.hide();
+            Toast.show({
+                type: 'error',
+                text1: 'Invalvid Time Zone',
+                text2: 'Enter a valid time zone',
+            });
+
+            return;
+        }
+
+        Toast.hide();
         setTimeZone(inputTimeZone);
     }
 
