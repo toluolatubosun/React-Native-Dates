@@ -3,17 +3,20 @@ import { StyleSheet } from 'react-native';
 export const globalStyles = StyleSheet.create({
     titleText: {
         fontSize: 18,
-        fontWeight: 'bold',
         color: '#333',
+        textAlign: 'center',
         fontFamily: 'poppins-regular',
     },
-    paragraph: {
-        marginVertical: 8,
-        lineHeight: 20,
-        fontFamily: 'poppins-regular',
+    LargeText: {
+        fontSize: 50,
+        marginVertical: 40,
+        color: '#333',
+        textAlign: 'center',
+        fontFamily: 'poppins-bold',
     },
     container: {
         flex: 1,
+        justifyContent: 'center',
         padding: 20,
         backgroundColor: '#fff'
     },

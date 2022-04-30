@@ -1,7 +1,9 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { globalStyles } from '../styles/global';
 import * as Localization from 'expo-localization'
+
+import { globalStyles } from '../styles/global';
+import moment from '../utils/moment';
 
 const fetchDate = async (timeZone) => {
     const response = await fetch(`http://worldtimeapi.org/api/timezone/${timeZone}`);
@@ -22,7 +24,9 @@ export default function Home(){
 
     return(
         <View style={globalStyles.container}>
-            <Text style={globalStyles.titleText}>Home</Text>
+            <Text style={globalStyles.titleText}>{timeZone}</Text>
+            <Text style={globalStyles.LargeText}>{moment.getTime(date?.datetime)}</Text>
+            <Text style={globalStyles.titleText}>{moment.getDate(date?.datetime)}</Text>
         </View>
     )
 }
