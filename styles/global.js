@@ -18,6 +18,7 @@ export const globalStyles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         padding: 20,
+        marginTop: -100,
         backgroundColor: '#fff'
     },
     input: {
