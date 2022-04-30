@@ -17,10 +17,16 @@ export default function Home(){
 
     React.useEffect(async () => {
         setTimeZone(Localization.timezone);
-
-        const date = await fetchDate(Localization.timezone);
-        setDate(date);
     }, [])
+
+    React.useEffect(() => {
+        if(!timeZone) return;
+
+        setInterval(async () => {
+            const date = await fetchDate(timeZone);
+            setDate(date);
+        }, 1000);
+    }, [timeZone])
 
     return(
         <View style={globalStyles.container}>

@@ -5,14 +5,14 @@ class Moment {
         if (!data) return "";
 
         moment.locale();
-        return moment(data).format("dddd LL");
+        return moment.parseZone(data).format("dddd LL");
     }
 
     getTime(data) {
         if (!data) return "";
 
         moment.locale();
-        return moment(data).format("LTS");
+        return moment.parseZone(data).format("LTS");
     }
 }
 
